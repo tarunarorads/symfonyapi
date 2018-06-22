@@ -43,7 +43,7 @@ class ApiController extends Controller
             $em->flush();
             return new Response(json_encode($arrRtn));
         }
-        return false;
+        return new Response(json_encode(['error' => 'Authentication failed']));
     }
 
 
