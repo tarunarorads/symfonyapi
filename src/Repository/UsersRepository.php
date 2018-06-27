@@ -19,32 +19,20 @@ class UsersRepository extends ServiceEntityRepository
         parent::__construct($registry, Users::class);
     }
 
-//    /**
-//     * @return Users[] Returns an array of Users objects
-//     */
-    /*
-    public function findByExampleField($value)
+ 
+    // set user token
+    public function userToken($users)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $response = [];
+        $response['user'] = $users->getUsername(); 
+        $response['token'] = bin2hex(openssl_random_pseudo_bytes(8));
+        $tokenExpiration = date('Y-m-d H:i:s', strtotime('+1 hour'));
+        $users->setToken($response['token']);
+        $users->setTokenExpire(new \DateTime($tokenExpiration));
+        $em = $this->getEntityManager();
+        $em->flush();
+        return $response;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Users
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+
 }

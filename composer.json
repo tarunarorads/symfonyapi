@@ -2,9 +2,10 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.0.8",
+        "php": "^7.2.6",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "guzzlehttp/guzzle": "^6.1",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/console": "^3.4",
         "symfony/flex": "^1.0",
@@ -15,8 +16,11 @@
         "symfony/yaml": "^3.4"
     },
     "require-dev": {
+        "symfony/browser-kit": "^3.4",
+        "symfony/css-selector": "^3.4",
         "symfony/dotenv": "^3.4",
         "symfony/maker-bundle": "^1.5",
+        "symfony/phpunit-bridge": "^3.4",
         "symfony/web-server-bundle": "^3.4"
     },
     "config": {

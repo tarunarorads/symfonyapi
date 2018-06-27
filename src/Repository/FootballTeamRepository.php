@@ -19,32 +19,33 @@ class FootballTeamRepository extends ServiceEntityRepository
         parent::__construct($registry, FootballTeam::class);
     }
 
-//    /**
-//     * @return FootballTeam[] Returns an array of FootballTeam objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?FootballTeam
+    public function create($name,$league)
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $team = new FootballTeam();
+        $this->createTeam($team,$name,$league);  
+        return true;
     }
-    */
+
+    public function createTeam($object,$name,$league)
+    {
+            $em = $this->getEntityManager();
+            $object->setStrip($league);
+            $object->setName($name);
+            $em->persist($object);
+            $em->flush();
+            return true;
+        
+    }
+ 
+    public function update($id,$name,$league)
+    {
+        $team = $this->find($id);
+        if(!empty($team)){
+            $this->createTeam($team,$name,$league);    
+            return true;
+        } 
+            return false;
+        
+    }
 }

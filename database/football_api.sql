@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 22, 2018 at 07:19 PM
+-- Generation Time: Jun 27, 2018 at 08:14 PM
 -- Server version: 5.7.22-0ubuntu0.16.04.1
 -- PHP Version: 7.2.6-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -79,7 +79,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `token`, `token_expire`) VALUES
-(1, 'admin', 'admin', 'admin', 'c7978601da125f0c', '2018-06-22 17:08:29');
+(1, 'admin', 'admin', 'admin', '63b9ca513a67d931', '2018-06-27 20:51:42');
 
 --
 -- Indexes for dumped tables
@@ -112,12 +112,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `football_team`
 --
 ALTER TABLE `football_team`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `league`
 --
 ALTER TABLE `league`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --

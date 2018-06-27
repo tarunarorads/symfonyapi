@@ -19,23 +19,6 @@ class LeagueRepository extends ServiceEntityRepository
         parent::__construct($registry, League::class);
     }
 
-//    /**
-//     * @return League[] Returns an array of League objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
 
     public function findOneByName($value): ?League
     {
@@ -56,5 +39,41 @@ class LeagueRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    public function getTeams($name)
+    {
+        $league = $this->createQueryBuilder('l')
+            ->andWhere('l.name = :val')
+            ->setParameter('val', $name)
+            ->getQuery()
+            ->getOneOrNullResult();
+            if($league){
+                $teamList = [];
+                    foreach ($league->getFootballTeams() as $key => $team) {
+                        $teamList[$key]['id'] = $team->getId();
+                        $teamList[$key]['name'] = $team->getName();
+                    }
+
+                    return $teamList; 
+            }
+
+            return false;
+        
+    }
+
+
+    public function delete($id){
+        $league = $this->find($id);
+        if(!empty($league)){
+            $em = $this->getEntityManager();
+            $em->remove($league);
+            $em->flush();
+            return true;
+        }
+        return false;
+    }
+
+
+
 
 }
